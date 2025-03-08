@@ -1,25 +1,17 @@
 import React from 'react';
+// import Botao from './componentes/Botao';
+import Formulario from './componentes/Formulario';
+import Lista from './componentes/Lista';
 // import logo from './logo.svg';
 // import './App.css';
 
 function App() {
   return (
     <div className="App">
-      Olá mundo!
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      {/* Olá mundo! */}
+      {/* <Botao /> */}
+      <Formulario />
+      <Lista />
     </div>
   );
 }
