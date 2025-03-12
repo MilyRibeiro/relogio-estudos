@@ -2,13 +2,10 @@ import React from "react";
 import Botao from "../Botao";
 import style from './Formulario.module.scss';
 import { ITarefa } from "../../types/tarefa";
+import { v4 as uuidv4 } from "uuid";
 
 class Formulario extends React.Component<{
     setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
-    //{
-    //     tarefa: string;
-    //     tempo: string;
-    // }[]>>
 }> {
     state = {
         tarefa: "",
@@ -17,8 +14,20 @@ class Formulario extends React.Component<{
 
     adicionarTarefa(evento: React.FormEvent<HTMLFormElement>) {
         evento.preventDefault();
-        this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, { ...this.state }]);
-     // console.log('state: ', this.state);
+        this.props.setTarefas(tarefasAntigas => 
+            [
+                ...tarefasAntigas, { 
+                    ...this.state,
+                    selecionado: false,
+                    completado: false,
+                    id: uuidv4()
+                }
+            ]);
+        // Para resetar o state (os campos do form) depois de adicionar uma nova tarefa:
+        this.setState({
+            tarefa: "",
+            tempo: "00:00"
+        })
     }
 
     render() {
