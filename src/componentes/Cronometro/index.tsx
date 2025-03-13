@@ -6,33 +6,35 @@ import { ITarefa } from "../../types/tarefa";
 import { useEffect, useState } from "react";
 
 interface Props {
-    selecionado: ITarefa | undefined
+    selecionado: ITarefa | undefined,
+    finalizarTarefa: () => void
 }
 
-export default function Cronometro({ selecionado }: Props) {
-    // console.log('Conversão: ', tempoParaSegundos('01:01:01'));
+export default function Cronometro({ selecionado, finalizarTarefa }: Props) {
     const [tempo, setTempo] = useState<number>();
-    //(tempoParaSegundos(String(selecionado?.tempo)));
-    
     useEffect(() => {
         if(selecionado?.tempo) {
             setTempo(tempoParaSegundos(selecionado.tempo))
         }
     }, [selecionado]);
-    
-    // isso aqui renderiza tantas vezes (infinitamente) que QUEBRA A APLICAÇÃO!!
-    // if(selecionado?.tempo) {
-    //     setTempo(tempoParaSegundos(selecionado.tempo));
-    // }
+
+    function regressiva(contador: number = 0) {
+        setTimeout(() => {
+            if(contador > 0) {
+                setTempo(contador - 1);
+                return regressiva(contador - 1);
+            }
+            finalizarTarefa();
+        }, 1000);  // 1000 milissegundos = 1 segundo
+    }
 
     return (
         <div className={style.cronometro}>
             <p className={style.titulo}>Escolha um card e inicie o cronômetro</p>
-            Tempo: {tempo}
             <div className={style.relogioWrapper}>
-                <Relogio />
+                <Relogio tempo={tempo} />
             </div>
-            <Botao>Começar</Botao>
+            <Botao onClick={() => regressiva(tempo)}>Começar</Botao>
         </div>
     )
 }
