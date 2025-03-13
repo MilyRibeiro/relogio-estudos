@@ -7,14 +7,12 @@ interface Props {
     selecionaTarefa: (tarefaSelecionada: ITarefa) => void
 }
 
-// function Lista({ tarefas }: { tarefas: ITarefa[] }) {
 function Lista({ tarefas, selecionaTarefa }: Props) {
     return (
         <aside className={style.listaTarefas}>
             <h2>Estudos do dia </h2>
             <ul>
                 {/* Cria de forma dinâmica um novo item ou li na lista */}
-                {/* {tarefas.map((item, index) => ( */}
                 {tarefas.map((item) => (
                    <Item 
                     selecionaTarefa={selecionaTarefa}

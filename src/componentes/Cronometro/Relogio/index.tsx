@@ -16,11 +16,6 @@ export default function Relogio({ tempo = 0 }: Props) {
             <span className={style.relogioDivisao}>:</span>
             <span className={style.relogioNumero}>{segundoDezena}</span>
             <span className={style.relogioNumero}>{segundoUnidade}</span>
-            {/* <span className={style.relogioNumero}>0</span>
-            <span className={style.relogioNumero}>0</span>
-            <span className={style.relogioDivisao}>:</span>
-            <span className={style.relogioNumero}>0</span>
-            <span className={style.relogioNumero}>0</span> */}
         </>
     )
 }
